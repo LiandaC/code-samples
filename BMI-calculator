@@ -1,0 +1,200 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>VDA - BMI Calculator</title>
+
+<style type="text/css">
+
+html, body {
+    margin: 0px;
+    padding: 0px;
+    border: 0px none;
+    font: inherit;
+    vertical-align: baseline;
+}
+.gradient-box {
+    background-color: #9599AB;
+    background-image: -moz-linear-gradient(right bottom , #8B92A8 0%, #F6E0CB 100%);
+    background-repeat: repeat-x;
+    border-bottom: 1px solid #BDC0CA;
+    border-top: 1px solid #BDC0CA;
+    height: 450px;
+    position: relative;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1) inset;
+}
+
+.white-pastel {
+    margin-left:auto;
+    margin-right:auto;
+	margin-top:50px;;
+    max-width: 500px;
+    background: #FFF;
+    padding: 30px 30px 20px 30px;
+    box-shadow: rgba(187, 187, 187, 1) 0 0px 20px -1px;
+    -webkit-box-shadow: rgba(187, 187, 187, 1) 0 0px 20px -1px;
+    font: 12px Arial, Helvetica, sans-serif;
+    color: #666;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+.white-pastel h1 {
+    font: 24px "Trebuchet MS", Arial, Helvetica, sans-serif;
+    padding: 0px 0px 10px 40px;
+    display: block;
+    border-bottom: 1px solid #F5F5F5;
+    margin: -10px -30px 10px -30px;
+    color: #969696;
+}
+.white-pastel h1>span {
+    display: block;
+    font-size: 11px;
+    color: #C4C2C2;
+}
+.white-pastel label {
+    display: block;
+    margin: 0px 0px 5px;
+}
+.white-pastel label>span {
+    float: left;
+    width: 20%;
+    text-align: right;
+    padding-right: 10px;
+    margin-top: 10px;
+    color: #969696;
+}
+.white-pastel input[type="number"], .white-pastel select{
+    color: #555;
+    width: 70%;
+    padding: 3px 0px 3px 5px;
+    margin-top: 2px;
+    margin-right: 6px;
+    margin-bottom: 16px;
+    border: 1px solid #e5e5e5;
+    background: #fbfbfb;
+    height: 25px;
+    line-height:15px;
+    outline: 0;
+    -webkit-box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
+    box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
+}
+
+output {
+	display:block;
+	min-width:50px; 
+	height:25px;
+	margin:3px; 
+	padding:5px;
+	text-align:center;
+	background:#f6e0cb;
+	color:#8b92a8;
+	float:left; 
+}
+
+.white-pastel .button {
+    background-color:#8b92a8;
+	border:none;
+    border-radius:9px;
+    -webkit-border-radius:9px;
+    -moz-border-border-radius:9px;
+    display:inline-block;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    font-style:normal;
+    height: 40px;
+    line-height: 30px;
+    width:100px;
+    text-decoration:none;
+    text-align:center;
+}
+.white-pastel .button:hover {
+	background-color:#f6e0cb;
+    
+}
+.white-pastel .button:active {
+    position:relative;
+    top:1px;
+}
+.white-pastel select {
+    background: url('down-arrow.png') no-repeat right, -moz-linear-gradient(top, #FBFBFB 0%, #E9E9E9 100%);
+    background: url('down-arrow.png') no-repeat right, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FBFBFB), color-stop(100%,#E9E9E9));
+   appearance:none;
+    -webkit-appearance:none;
+   -moz-appearance: none;
+    text-indent: 0.01px;
+    text-overflow: '';
+    width: 70%;
+    line-height: 15px;
+    height: 30px;
+}
+
+</style>
+
+<script type="text/javascript">
+	
+	function updateOutputBMI() {
+	var form = document.getElementById("bmi");
+	var out = form.elements["result"];
+	var num1 = parseInt(form.elements["weight"].value);
+	var num2 = parseInt(form.elements["height"].value);
+	var operator = parseInt(form.elements["gender"].value);
+	
+	switch(operator)
+		{
+			//female
+			case 0:
+			out.value = num1-num2;
+			break;
+			//male
+			case 1: 
+			out.value = num1+num2;
+			break;
+			default:
+			break;
+		}
+	
+	
+	}
+	
+	
+</script>
+
+</head>
+
+<body class="body">
+    <section class="gradient-box">
+    	<form id="bmi" class="white-pastel">
+    <h1>BMI Calculator
+        <span>Please fill all the texts in the fields.</span>
+    </h1>
+    <label>
+        <span>Your Weight (kg) :</span>
+        <input name="weight" type="number" value="0" />
+    </label>
+   
+    <label>
+        <span>Your Height (cm) :</span>
+        <input name="height" type="number" value="0" />
+    </label>
+   
+    <label>
+        <span>Gender :</span><select name="gender">
+            <option value="0">Female</option>
+            <option value="1">Male</option>
+        </select>
+    </label>
+     <label>
+        <span>Your BMI :</span>
+        <output name="result" for="weight height">0</output>
+     </label>
+     <label>
+        <span>&nbsp;</span>
+        <input type="button" class="button" value="Calculate" onClick="updateOutputBMI()" />
+    </label>    
+</form>
+</section>
+
+</body>
+</html>
